@@ -164,18 +164,18 @@ header
 
 #scf-contactform
     form
-        .col, .col-12
+        .col, .col-12, .col-sm-6
             position: relative
 
+            &:has(input:focus), &:has(textarea:focus)
+                label
+                    opacity: 0 !important
+
+            &:has(input:placeholder-shown), &:has(textarea:placeholder-shown)
+                label
+                    opacity: 1
+
             input, textarea
-                &:placeholder-shown
-                    & + label
-                        opacity: 1
-
-                &:focus
-                    & + label
-                        opacity: 0
-
                 &::placeholder
                     opacity: 0
 
@@ -183,14 +183,26 @@ header
                 position: absolute
                 top: calc($input-padding-y + $input-border-width)
                 left: calc(map-get($spacers, 4) / 2 + $input-padding-x)
-                opacity: 0
                 transition: $transition-base
                 font-size: map-get($font-sizes, 2)
+                display: inline-block !important
+                opacity: 0
 
-            input
-                & + label
+            &:has(input)
+                label
                     top: 50%
                     transform: translateY(-50%)
+
+            &:has(input:required), &:has(textarea:required)
+                label
+                    &:before
+                        content: "*"
+                        color: $danger
+                        margin-right: map-get($spacers, 1)
+
+        button
+            &:after
+                display: none !important
 
 .alert
     font-size: map-get($font-sizes, 2)
