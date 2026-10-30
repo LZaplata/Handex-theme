@@ -164,10 +164,12 @@ handle = "Homepage"
 
         <div class="row row-cols-2 gy-2 gx-5 row-cols-md-3 gx-lg-7 row-cols-xl-5">
             {% for image in homepage.coop_images %}
-                <div class="col d-flex flex-column align-items-center justify-content-center">
-                    <img src="{{ image.path }}" alt="{{ image.description }}" class="img-fluid">
+                <div class="col coop-partner">
+                    <div class="coop-partner__logo">
+                        <img src="{{ image.path }}" alt="{{ image.description }}" class="coop-partner__image">
+                    </div>
 
-                    <span class="mt-2 small">
+                    <span class="coop-partner__title mt-2 small">
                         {{ image.title }}
                     </span>
                 </div>
